@@ -39,6 +39,7 @@ set timeoutlen=1000 ttimeoutlen=0
 
 " tabs
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 
