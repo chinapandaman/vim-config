@@ -18,11 +18,11 @@ call plug#end()
 
 " general settings and theme related
 syntax on
-colo gruvbox
 set number
 set background=dark
 set hlsearch
 set termguicolors
+colo gruvbox
 
 " indent guides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -39,7 +39,6 @@ set timeoutlen=1000 ttimeoutlen=0
 
 " tabs
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 
@@ -88,6 +87,11 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+nmap [g <Plug>(coc-diagnostic-prev)
+nmap ]g <Plug>(coc-diagnostic-next)
+
 " GoTo code navigation
 nmap gd <Plug>(coc-definition)
 nmap gy <Plug>(coc-type-definition)
@@ -97,3 +101,6 @@ nmap gr <Plug>(coc-references)
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd VimEnter * highlight CocHighlightText ctermfg=White ctermbg=Blue
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
