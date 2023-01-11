@@ -22,6 +22,7 @@ colo gruvbox
 set number
 set background=dark
 set hlsearch
+set termguicolors
 
 " indent guides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -91,3 +92,6 @@ nmap gd <Plug>(coc-definition)
 nmap gy <Plug>(coc-type-definition)
 nmap gi <Plug>(coc-implementation)
 nmap gr <Plug>(coc-references)
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
