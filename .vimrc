@@ -95,3 +95,4 @@ nmap gr <Plug>(coc-references)
 
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd VimEnter * highlight CocHighlightText ctermfg=White ctermbg=Blue
