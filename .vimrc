@@ -3,6 +3,7 @@ call plug#begin()
     Plug 'jiangmiao/auto-pairs'
     Plug 'airblade/vim-gitgutter'
     Plug 'vim-airline/vim-airline'
+    Plug 'nathanaelkane/vim-indent-guides'
     Plug 'luochen1990/rainbow'
     Plug 'tpope/vim-fugitive'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -11,19 +12,17 @@ call plug#begin()
     Plug 'scrooloose/nerdtree'
     Plug 'majutsushi/tagbar'
     Plug 'moll/vim-bbye'
-    Plug 'nlknguyen/papercolor-theme'
-    Plug 'vim-airline/vim-airline-themes'
+    Plug 'morhetz/gruvbox'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " general settings and theme related
 syntax on
+colo gruvbox
 set number
+set background=dark
 set hlsearch
 set termguicolors
-set background=light
-colo PaperColor
-let g:airline_theme='papercolor'
 
 " indent guides
 let g:indent_guides_enable_on_vim_startup = 1
