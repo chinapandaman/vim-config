@@ -19,6 +19,7 @@ call plug#end()
 " general settings and theme related
 syntax on
 set number
+set relativenumber
 set background=dark
 set hlsearch
 set termguicolors
