@@ -63,9 +63,12 @@ nnoremap <Leader>gd :Gvdiff<CR>
 nnoremap <Leader>gs :Git status<CR>
 nnoremap <Leader>gb :Git branch<CR>
 
+" ale
 let g:ale_linters={
 \   'python': ['pylint'],
 \}
+highlight ALEError cterm=underline
+highlight ALEWarning cterm=underline
 
 " coc
 " 
@@ -107,6 +110,10 @@ nmap gr <Plug>(coc-references)
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd VimEnter * highlight CocHighlightText ctermfg=White ctermbg=Blue
+
+" Errors highlighting
+highlight CocErrorHighlight cterm=underline
+highlight CocWarningHighlight cterm=underline
 
 " Symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
