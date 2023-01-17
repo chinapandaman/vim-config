@@ -14,6 +14,7 @@ call plug#begin()
     Plug 'moll/vim-bbye'
     Plug 'morhetz/gruvbox'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'dense-analysis/ale'
 call plug#end()
 
 " general settings and theme related
@@ -62,6 +63,10 @@ nnoremap <Leader>gd :Gvdiff<CR>
 nnoremap <Leader>gs :Git status<CR>
 nnoremap <Leader>gb :Git branch<CR>
 
+let g:ale_linters={
+\   'python': ['pylint'],
+\}
+
 " coc
 " 
 " May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
@@ -92,11 +97,6 @@ function! CheckBackspace() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-nmap [g <Plug>(coc-diagnostic-prev)
-nmap ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation
 nmap gd <Plug>(coc-definition)
