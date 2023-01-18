@@ -1,7 +1,6 @@
 " plugins
 call plug#begin()
     Plug 'jiangmiao/auto-pairs'
-    Plug 'airblade/vim-gitgutter'
     Plug 'vim-airline/vim-airline'
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'luochen1990/rainbow'
@@ -82,10 +81,6 @@ set nowritebackup
 " Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
 " delays and poor user experience
 set updatetime=300
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved
-set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
