@@ -23,6 +23,7 @@ set relativenumber
 set background=dark
 set hlsearch
 set termguicolors
+set backspace=indent,eol,start
 colo gruvbox
 
 " indent guides
