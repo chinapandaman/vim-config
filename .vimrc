@@ -25,6 +25,7 @@ set hlsearch
 set termguicolors
 set backspace=indent,eol,start
 colo gruvbox
+let g:airline_powerline_fonts = 1
 
 " indent guides
 let g:indent_guides_enable_on_vim_startup = 1

@@ -9,6 +9,7 @@ IDE like vim config inspired by SpaceVim.
     * [Universal Ctags](https://ctags.io/)
     * Node.js >= 14.14
     * [coc-highlight](https://github.com/neoclide/coc-highlight)
+    * [Powerline fonts](https://github.com/powerline/fonts)
 
 * Python
     * [coc-jedi](https://github.com/pappasam/coc-jedi)
