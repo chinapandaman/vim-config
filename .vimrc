@@ -41,6 +41,7 @@ nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>ag :Ag <C-R><C-W><CR>
 let g:fzf_layout = { 'down':  '35%'}
 set timeoutlen=1000 ttimeoutlen=0
+#nnoremap <Leader>c :!echo -ne "\e[0 q"<CR><CR>
 
 " tabs
 let g:airline#extensions#tabline#enabled = 1
