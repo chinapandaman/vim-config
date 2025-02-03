@@ -82,6 +82,9 @@ highlight ALEWarning cterm=underline
 
 " YAML related
 function! YAMLTree()
+    if (&filetype != 'yaml')
+        return
+    endif
     let l:list = []
     let l:cur = getcurpos()[1]
     " Retrieve the current line indentation
@@ -101,7 +104,7 @@ function! YAMLTree()
     echo join(l:list, ' -> ')
 endfunction
 
-autocmd CursorMoved,BufRead *.yml,*.yaml call YAMLTree()
+autocmd CursorMoved * call YAMLTree()
 set foldlevelstart=20
 
 " hotkeys
