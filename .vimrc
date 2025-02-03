@@ -14,6 +14,9 @@ call plug#begin()
     Plug 'morhetz/gruvbox'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'dense-analysis/ale'
+    Plug '907th/vim-auto-save'
+    Plug 'pedrohdz/vim-yaml-folds'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 call plug#end()
 
 " general settings and theme related
@@ -26,7 +29,9 @@ set termguicolors
 set backspace=indent,eol,start
 colo gruvbox
 let g:airline_powerline_fonts = 1
-autocmd FileType markdown set spell
+let g:auto_save = 1
+set directory^=$HOME/.vim/tmp//
+autocmd FileType markdown setlocal spell
 autocmd VimEnter * highlight SpellBad ctermfg=black ctermbg=green
 
 " indent guides
@@ -41,14 +46,15 @@ nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>ag :Ag <C-R><C-W><CR>
 let g:fzf_layout = { 'down':  '35%'}
 set timeoutlen=1000 ttimeoutlen=0
-#nnoremap <Leader>c :!echo -ne "\e[0 q"<CR><CR>
 
 " tabs
 let g:airline#extensions#tabline#enabled = 1
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 
-" split navigations
+" split and navigations
+set splitright
+nnoremap <Leader>s :vsp %<CR>
 nnoremap <Up> :wincmd k<CR>
 nnoremap <Down> :wincmd j<CR>
 nnoremap <Left> :wincmd h<CR>
@@ -73,6 +79,33 @@ let g:ale_linters={
 \}
 highlight ALEError cterm=underline
 highlight ALEWarning cterm=underline
+
+" YAML related
+function! YAMLTree()
+    let l:list = []
+    let l:cur = getcurpos()[1]
+    " Retrieve the current line indentation
+    let l:indent = indent(l:cur) + 1
+    " Loop from the cursor position to the top of the file
+    for l:n in reverse(range(1, l:cur))
+        let l:i = indent(l:n)
+        let l:line = getline(l:n)
+        let l:key = substitute(l:line, '^\s*\(\<\w\+\>\):.*', "\\1", '')
+        " If the indentation decreased and the pattern matched
+        if (l:i < l:indent && l:key !=# l:line)
+            let l:list = add(l:list, l:key)
+            let l:indent = l:i
+        endif
+    endfor
+    let l:list = reverse(l:list)
+    echo join(l:list, ' -> ')
+endfunction
+
+autocmd CursorMoved,BufRead *.yml,*.yaml call YAMLTree()
+set foldlevelstart=20
+
+" hotkeys
+vnoremap <Leader>cp "+y
 
 " coc
 " 

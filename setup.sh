@@ -3,3 +3,4 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 cp .vimrc ~/.vimrc
 cp coc-settings.json ~/.vim/coc-settings.json
 vim +PlugInstall +qa
+mkdir ~/.vim/tmp/
