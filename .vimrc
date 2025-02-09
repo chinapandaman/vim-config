@@ -93,7 +93,7 @@ function! YAMLTree()
     for l:n in reverse(range(1, l:cur))
         let l:i = indent(l:n)
         let l:line = getline(l:n)
-        let l:key = substitute(l:line, '^\s*\(\<\w\+\>\):.*', "\\1", '')
+        let l:key = substitute(l:line, '^\s*-\?\s*\(["'']\?\([a-zA-Z0-9_.-]\+\)["'']\?\)\s*:\s*.*', "\\1", '')
         " If the indentation decreased and the pattern matched
         if (l:i < l:indent && l:key !=# l:line)
             let l:list = add(l:list, l:key)
