@@ -19,3 +19,27 @@ IDE like vim config inspired by SpaceVim.
 
 * Go
     * [coc-go](https://github.com/josa42/coc-go)
+
+# Keybinding to Know
+
+* `Shift - f` - global search, use `'` to match exactly
+* `\ - f` - file search
+* `\ - a - g` - global search current word under cursor
+* `\ - s` - split right
+* use arrow keys to navigate between splits
+* `zz` - center around current line
+* `\ - q` - close current buffer
+* `\ - m` - toggle nerdtree and tagbar
+* `\ - g - d` - git diff current buffer
+* `\ - g - s` - git status
+* `\ - g - b` - git branch
+* `\ - c - p` - copy to clipboard
+* `g - d` - go to definition
+* `g - r` - go to references
+* `\ - r - n` - refactor rename
+* `:noh` - remove highlight search
+* `/ - /` - search visual selection
+* `\ - r - a` - replace all searching keyword with
+* `za` - toggle YAML fold
+* `:Gvdiffsplit!` - resolve conflicts
+* `:MarkdownPreview` - preview markdown
