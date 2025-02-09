@@ -42,7 +42,7 @@ let g:rainbow_active = 1
 
 " fzf related
 nnoremap <S-f> :Ag<CR>
-nnoremap <Leader>f :Files<CR> 
+nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>ag :Ag <C-R><C-W><CR>
 let g:fzf_layout = { 'down':  '35%'}
 set timeoutlen=1000 ttimeoutlen=0
@@ -111,7 +111,7 @@ set foldlevelstart=20
 vnoremap <Leader>cp "+y
 
 " coc
-" 
+"
 " May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
 " utf-8 byte sequence
 set encoding=utf-8
