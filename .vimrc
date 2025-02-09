@@ -109,6 +109,8 @@ set foldlevelstart=20
 
 " hotkeys
 vnoremap <Leader>cp "+y
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+nnoremap <Leader>ra :%s//
 
 " coc
 "
