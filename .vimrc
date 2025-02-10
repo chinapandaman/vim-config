@@ -141,6 +141,9 @@ xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 
 function! DiffYankAndClipboard()
+    " Get the syntax highlighting of the current file
+    let l:syntax = &syntax
+
     " Check if the scratch buffers already exist
     let s:left_buf = bufexists('Yank') ? bufnr('Yank') : -1
     let s:right_buf = bufexists('Clipboard') ? bufnr('Clipboard') : -1
@@ -156,12 +159,14 @@ function! DiffYankAndClipboard()
     vnew Yank
     setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
     call setline(1, split(getreg('"'), "\n"))
+    execute 'setlocal syntax=' . l:syntax
     diffthis
 
     " Open right scratch buffer for clipboard text
     vnew Clipboard
     setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
     call setline(1, split(getreg('+'), "\n"))
+    execute 'setlocal syntax=' . l:syntax
     diffthis
 
     " Move back to the left buffer
