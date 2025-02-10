@@ -18,3 +18,4 @@ call plug#begin()
     Plug 'pedrohdz/vim-yaml-folds'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 call plug#end()
+

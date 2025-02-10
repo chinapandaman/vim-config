@@ -1,4 +1,3 @@
-
 " general settings and theme related
 syntax on
 set number
@@ -140,3 +139,34 @@ nmap <leader>rn <Plug>(coc-rename)
 nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
 xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+
+function! DiffYankAndClipboard()
+    " Check if the scratch buffers already exist
+    let s:left_buf = bufexists('Yank') ? bufnr('Yank') : -1
+    let s:right_buf = bufexists('Clipboard') ? bufnr('Clipboard') : -1
+
+    " If both buffers exist, close them and return (toggle behavior)
+    if s:left_buf > 0 && s:right_buf > 0
+        execute 'bd! ' . s:left_buf
+        execute 'bd! ' . s:right_buf
+        return
+    endif
+
+    " Open left scratch buffer for yanked text
+    vnew Yank
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+    call setline(1, split(getreg('"'), "\n"))
+    diffthis
+
+    " Open right scratch buffer for clipboard text
+    vnew Clipboard
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+    call setline(1, split(getreg('+'), "\n"))
+    diffthis
+
+    " Move back to the left buffer
+    wincmd h
+endfunction
+
+" Map the function to <leader>d for easy access
+nnoremap <leader>d :call DiffYankAndClipboard()<CR>
