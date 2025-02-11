@@ -6,6 +6,7 @@ IDE like vim config inspired by SpaceVim.
 
 * General
     * [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)
+    * [bat](https://github.com/sharkdp/bat)
     * [Universal Ctags](https://ctags.io/)
     * Node.js >= 14.14
     * [coc-highlight](https://github.com/neoclide/coc-highlight)
