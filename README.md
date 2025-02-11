@@ -28,6 +28,7 @@ IDE like vim config inspired by SpaceVim.
 * `\ - s` - split right
 * use arrow keys to navigate between splits
 * `z - z` - center around current line
+* `g - x` - open link
 * `\ - q` - close current buffer
 * `\ - m` - toggle nerdtree and tagbar
 * `\ - g - d` - git diff current buffer
@@ -41,5 +42,6 @@ IDE like vim config inspired by SpaceVim.
 * `/ - /` - search visual selection
 * `\ - r - a` - replace all searching keyword with
 * `z - a` - toggle YAML fold
+* `\ - d` - diff yank and clipboard
 * `:Gvdiffsplit!` - resolve conflicts
 * `:MarkdownPreview` - preview markdown
