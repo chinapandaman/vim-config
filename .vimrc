@@ -175,3 +175,36 @@ endfunction
 
 " Map the function to <leader>d for easy access
 nnoremap <leader>d :call DiffYankAndClipboard()<CR>
+
+function! OpenGithubFile()
+  let l:remote_url = system('git config --get remote.origin.url')
+  let l:remote_url = substitute(l:remote_url, '\n', '', 'g')
+
+  " Convert SSH GitHub URLs to HTTPS format
+  if l:remote_url =~? '^git@github.com:'
+    let l:remote_url = substitute(l:remote_url, '^git@github.com:', 'https://github.com/', '')
+  endif
+  let l:remote_url = substitute(l:remote_url, '.git$', '', '')
+
+  " Get the current Git branch
+  let l:branch = system('git rev-parse --abbrev-ref HEAD')
+  let l:branch = substitute(l:branch, '\n', '', 'g')
+
+  " Get the relative file path in the repository
+  let l:file = expand('%')
+
+  " Construct the GitHub URL for the current file
+  let l:url = l:remote_url . '/blob/' . l:branch . '/' . l:file
+
+  " Open the URL in the default web browser
+  if has('mac')
+    call system('open ' . shellescape(l:url) . ' &')  " macOS
+  elseif has('unix')
+    call system('xdg-open ' . shellescape(l:url) . ' &')  " Linux
+  elseif has('win32') || has('win64')
+    call system('start ' . shellescape(l:url))  " Windows
+  endif
+endfunction
+
+" Map <Leader>gf to open the current file on GitHub
+nnoremap <Leader>gf :call OpenGithubFile()<CR>
