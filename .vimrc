@@ -83,6 +83,69 @@ function! YAMLTree()
     echo join(l:list, ' -> ')
 endfunction
 
+function! DiffYankAndClipboard()
+    " Get the syntax highlighting of the current file
+    let l:syntax = &syntax
+
+    " Check if the scratch buffers already exist
+    let s:left_buf = bufexists('Yank') ? bufnr('Yank') : -1
+    let s:right_buf = bufexists('Clipboard') ? bufnr('Clipboard') : -1
+
+    " If both buffers exist, close them and return (toggle behavior)
+    if s:left_buf > 0 && s:right_buf > 0
+        execute 'bd! ' . s:left_buf
+        execute 'bd! ' . s:right_buf
+        return
+    endif
+
+    " Open left scratch buffer for yanked text
+    vnew Yank
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+    call setline(1, split(getreg('"'), "\n"))
+    execute 'setlocal syntax=' . l:syntax
+    diffthis
+
+    " Open right scratch buffer for clipboard text
+    vnew Clipboard
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+    call setline(1, split(getreg('+'), "\n"))
+    execute 'setlocal syntax=' . l:syntax
+    diffthis
+
+    " Move back to the left buffer
+    wincmd h
+endfunction
+
+function! OpenGithubFile()
+  let l:remote_url = system('git config --get remote.origin.url')
+  let l:remote_url = substitute(l:remote_url, '\n', '', 'g')
+
+  " Convert SSH GitHub URLs to HTTPS format
+  if l:remote_url =~? '^git@github.com:'
+    let l:remote_url = substitute(l:remote_url, '^git@github.com:', 'https://github.com/', '')
+  endif
+  let l:remote_url = substitute(l:remote_url, '.git$', '', '')
+
+  " Get the current Git branch
+  let l:branch = system('git rev-parse --abbrev-ref HEAD')
+  let l:branch = substitute(l:branch, '\n', '', 'g')
+
+  " Get the relative file path in the repository
+  let l:file = expand('%')
+
+  " Construct the GitHub URL for the current file
+  let l:url = l:remote_url . '/blob/' . l:branch . '/' . l:file
+
+  " Open the URL in the default web browser
+  if has('mac')
+    call system('open ' . shellescape(l:url) . ' &')  " macOS
+  elseif has('unix')
+    call system('xdg-open ' . shellescape(l:url) . ' &')  " Linux
+  elseif has('win32') || has('win64')
+    call system('start ' . shellescape(l:url))  " Windows
+  endif
+endfunction
+
 autocmd CursorMoved * call YAMLTree()
 set foldlevelstart=20
 
@@ -90,6 +153,8 @@ set foldlevelstart=20
 vnoremap <Leader>cp "+y
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 nnoremap <Leader>ra :%s//
+nnoremap <leader>d :call DiffYankAndClipboard()<CR>
+nnoremap <Leader>gf :call OpenGithubFile()<CR>
 
 " coc
 "
@@ -139,72 +204,3 @@ nmap <leader>rn <Plug>(coc-rename)
 nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
 xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
-
-function! DiffYankAndClipboard()
-    " Get the syntax highlighting of the current file
-    let l:syntax = &syntax
-
-    " Check if the scratch buffers already exist
-    let s:left_buf = bufexists('Yank') ? bufnr('Yank') : -1
-    let s:right_buf = bufexists('Clipboard') ? bufnr('Clipboard') : -1
-
-    " If both buffers exist, close them and return (toggle behavior)
-    if s:left_buf > 0 && s:right_buf > 0
-        execute 'bd! ' . s:left_buf
-        execute 'bd! ' . s:right_buf
-        return
-    endif
-
-    " Open left scratch buffer for yanked text
-    vnew Yank
-    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
-    call setline(1, split(getreg('"'), "\n"))
-    execute 'setlocal syntax=' . l:syntax
-    diffthis
-
-    " Open right scratch buffer for clipboard text
-    vnew Clipboard
-    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
-    call setline(1, split(getreg('+'), "\n"))
-    execute 'setlocal syntax=' . l:syntax
-    diffthis
-
-    " Move back to the left buffer
-    wincmd h
-endfunction
-
-" Map the function to <leader>d for easy access
-nnoremap <leader>d :call DiffYankAndClipboard()<CR>
-
-function! OpenGithubFile()
-  let l:remote_url = system('git config --get remote.origin.url')
-  let l:remote_url = substitute(l:remote_url, '\n', '', 'g')
-
-  " Convert SSH GitHub URLs to HTTPS format
-  if l:remote_url =~? '^git@github.com:'
-    let l:remote_url = substitute(l:remote_url, '^git@github.com:', 'https://github.com/', '')
-  endif
-  let l:remote_url = substitute(l:remote_url, '.git$', '', '')
-
-  " Get the current Git branch
-  let l:branch = system('git rev-parse --abbrev-ref HEAD')
-  let l:branch = substitute(l:branch, '\n', '', 'g')
-
-  " Get the relative file path in the repository
-  let l:file = expand('%')
-
-  " Construct the GitHub URL for the current file
-  let l:url = l:remote_url . '/blob/' . l:branch . '/' . l:file
-
-  " Open the URL in the default web browser
-  if has('mac')
-    call system('open ' . shellescape(l:url) . ' &')  " macOS
-  elseif has('unix')
-    call system('xdg-open ' . shellescape(l:url) . ' &')  " Linux
-  elseif has('win32') || has('win64')
-    call system('start ' . shellescape(l:url))  " Windows
-  endif
-endfunction
-
-" Map <Leader>gf to open the current file on GitHub
-nnoremap <Leader>gf :call OpenGithubFile()<CR>
