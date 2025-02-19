@@ -21,7 +21,7 @@ IDE like vim config inspired by SpaceVim.
 * Go
     * [coc-go](https://github.com/josa42/coc-go)
 
-# Keybinding to Know
+# Cheatsheet
 
 * `Shift - f` - global search, use `'` to match exactly
 * `\ - f` - file search
@@ -35,6 +35,7 @@ IDE like vim config inspired by SpaceVim.
 * `\ - g - d` - git diff current buffer
 * `\ - g - s` - git status
 * `\ - g - b` - git branch
+* `\ - g - f` - go to current file on GitHub
 * `\ - c - p` - copy to clipboard
 * `g - d` - go to definition
 * `g - r` - go to references
