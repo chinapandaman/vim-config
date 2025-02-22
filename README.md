@@ -21,6 +21,9 @@ IDE like vim config inspired by SpaceVim.
 * Go
     * [coc-go](https://github.com/josa42/coc-go)
 
+* TypeScript
+    * [coc-tsserver](https://github.com/neoclide/coc-tsserver)
+
 # Cheatsheet
 
 * `Shift - f` - global search, use `'` to match exactly
