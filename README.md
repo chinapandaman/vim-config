@@ -35,7 +35,8 @@ IDE like vim config inspired by SpaceVim.
 * `g - x` - open link
 * `\ - q` - close current buffer
 * `\ - m` - toggle nerdtree and tagbar
-* `\ - g - d` - git diff current buffer
+* `\ - g - d` - git diff view
+* `\ - tab` - next file in git diff view
 * `\ - g - s` - git status
 * `\ - g - b` - git branch
 * `\ - g - f` - go to current file on GitHub
