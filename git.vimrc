@@ -1,18 +1,20 @@
 " git related
-function! GitUnstagedVdiff()
+function! GitUnstagedAndUntrackedVdiff()
   " Close all existing buffers
   bufdo bdelete
 
-  " Get a list of unstaged files
-  let l:files = systemlist('git diff --name-only')
+  " Get a list of unstaged and untracked files
+  let l:unstaged_files = systemlist('git diff --name-only')
+  let l:untracked_files = systemlist('git ls-files --others --exclude-standard')
+  let l:files = l:unstaged_files + l:untracked_files
 
-  " If there are no unstaged files, return
+  " If there are no unstaged or untracked files, return
   if empty(l:files)
-    echo "No unstaged files."
+    echo "No unstaged or untracked files."
     return
   endif
 
-  " Open each unstaged file in a new buffer
+  " Open each file in a new buffer
   for l:file in l:files
     execute 'edit ' . l:file
   endfor
@@ -37,7 +39,7 @@ endfunction
 
 " Map function to <Leader><Tab>
 nnoremap <Leader><Tab> :call CloseLeftSplitNextBufferVdiff()<CR>
-nnoremap <Leader>gd :!vim -M -n -c 'call GitUnstagedVdiff()'<CR>
+nnoremap <Leader>gd :!vim -M -n -c 'call GitUnstagedAndUntrackedVdiff()'<CR>
 nnoremap <Leader>gs :Git status<CR>
 nnoremap <Leader>gb :Git branch<CR>
 
