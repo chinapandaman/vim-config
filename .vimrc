@@ -49,7 +49,7 @@ let g:tagbar_sort=0
 
 " ale
 let g:ale_linters={
-\   'python': ['pylint'],
+\   'python': ['pyright'],
 \}
 highlight ALEError cterm=underline
 highlight ALEWarning cterm=underline

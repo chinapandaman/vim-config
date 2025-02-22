@@ -15,7 +15,7 @@ IDE like vim config inspired by SpaceVim.
 
 * Python
     * [coc-jedi](https://github.com/pappasam/coc-jedi)
-    * [Pylint](https://pypi.org/project/pylint/)
+    * [pyright](https://github.com/microsoft/pyright)
     * [PuDB](https://pypi.org/project/pudb/)
 
 * Go
