@@ -24,9 +24,6 @@ IDE like vim config inspired by SpaceVim.
 * TypeScript
     * [coc-tsserver](https://github.com/neoclide/coc-tsserver)
 
-* YAML
-    * [coc-yaml](https://github.com/neoclide/coc-yaml)
-
 # Cheatsheet
 
 * `Shift - f` - global search, use `'` to match exactly
