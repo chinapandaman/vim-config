@@ -147,6 +147,6 @@ set foldlevelstart=20
 vnoremap <Leader>cp "+y
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 nnoremap <Leader>ra :%s//
-nnoremap <leader>d :call DiffYankAndClipboard()<CR>
+nnoremap <Leader>d :call DiffYankAndClipboard()<CR>
 nnoremap <Leader>gf :call OpenGithubFile()<CR>
 

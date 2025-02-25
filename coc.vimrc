@@ -40,9 +40,9 @@ highlight CocErrorHighlight cterm=underline
 highlight CocWarningHighlight cterm=underline
 
 " Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
+nmap <Leader>rn <Plug>(coc-rename)
 
 " Remap keys for applying refactor code actions
-nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
-xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
-nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <Leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <Leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <Leader>r  <Plug>(coc-codeaction-refactor-selected)
