@@ -28,7 +28,7 @@ IDE like vim config inspired by SpaceVim.
 
 * `Shift - f` - global search, use `'` to match exactly
 * `\ - f` - file search
-* `\ - a - g` - global search current word under cursor
+* `\ - a - g` - grep clipboard with file type
 * `\ - s` - split right
 * use arrow keys to navigate between splits
 * `z - z` - center around current line

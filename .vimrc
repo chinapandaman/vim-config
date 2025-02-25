@@ -22,7 +22,6 @@ let g:rainbow_active = 1
 " fzf related
 nnoremap <S-f> :Ag<CR>
 nnoremap <Leader>f :Files<CR>
-nnoremap <Leader>ag :Ag <C-R><C-W><CR>
 let g:fzf_layout = { 'down':  '35%'}
 set timeoutlen=1000 ttimeoutlen=0
 
