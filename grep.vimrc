@@ -16,14 +16,14 @@ function! GrepSearchBuffer()
   let l:search_term = getreg('+') " Use the system clipboard register
   
   " Construct the grep command with the clipboard content as the search string
-  let l:grep_cmd = 'grep -rin --include="*" "' . l:search_term . '" .'
+  let l:grep_cmd = 'git grep -in "' . l:search_term . '" -- "*"'
 
   " Insert the grep command into the buffer
   call setline(1, l:grep_cmd)
   call setline(2, '') " Insert an empty line after the command
 
-  " Move cursor to the file extension filter ("*") at position 23
-  call cursor(1, 23)
+  " Move cursor to the file extension filter ("*") at position 28
+  call cursor(1, 28)
 
   " Map <Enter> to execute the command and insert results below it
   nnoremap <buffer> <CR> :call ExecuteGrepCommand()<CR>
@@ -43,7 +43,7 @@ function! ExecuteGrepCommand()
   call append(2, systemlist(l:cmd))
 
   " Move the cursor back to the position where the file extension filter was
-  call cursor(1, 23)
+  call cursor(1, 28)
 endfunction
 
 function! OpenFileFromGrepResult()
