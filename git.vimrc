@@ -39,7 +39,7 @@ endfunction
 
 " Map function to <Leader><Tab>
 nnoremap <Leader><Tab> :call CloseLeftSplitNextBufferVdiff()<CR>
-nnoremap <Leader>gd :!vim -M -n -c 'call GitUnstagedAndUntrackedVdiff()'<CR>
+nnoremap <Leader>gd :!vim -M -n -c 'let g:ale_enabled = 0' -c 'call GitUnstagedAndUntrackedVdiff()'<CR>
 nnoremap <Leader>gs :Git status<CR>
 nnoremap <Leader>gb :Git branch<CR>
 
