@@ -12,6 +12,7 @@ IDE like vim config inspired by SpaceVim.
     * [coc-highlight](https://github.com/neoclide/coc-highlight)
     * [Powerline fonts](https://github.com/powerline/fonts)
     * [vim-gtk](https://stackoverflow.com/questions/11489428/how-can-i-make-vim-paste-from-and-copy-to-the-systems-clipboard)
+    * [aider](https://github.com/Aider-AI/aider)
 
 * Python
     * [coc-jedi](https://github.com/pappasam/coc-jedi)
