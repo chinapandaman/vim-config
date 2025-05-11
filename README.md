@@ -28,6 +28,7 @@ IDE like vim config inspired by SpaceVim.
 
 # Cheatsheet
 
+* `\ - a - i` - chat with Aider
 * `Shift - f` - global search, use `'` to match exactly
 * `\ - f` - file search
 * `\ - a - g` - grep clipboard with file type
