@@ -17,6 +17,5 @@ call plug#begin()
     Plug '907th/vim-auto-save'
     Plug 'pedrohdz/vim-yaml-folds'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
-    Plug 'preservim/nerdcommenter'
 call plug#end()
 
