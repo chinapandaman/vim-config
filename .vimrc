@@ -144,7 +144,7 @@ autocmd CursorMoved * call YAMLTree()
 set foldlevelstart=20
 
 " AI
-nnoremap <Leader>ai :vertical terminal aider --chat-mode ask --model openrouter/deepseek/deepseek-chat-v3-0324:free
+nnoremap <Leader>ai :!aider --chat-mode ask --model openrouter/deepseek/deepseek-chat-v3-0324:free<CR>
 
 " hotkeys
 vnoremap <Leader>cp "+y
