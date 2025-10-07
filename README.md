@@ -12,7 +12,7 @@ IDE like vim config inspired by SpaceVim.
     * [coc-highlight](https://github.com/neoclide/coc-highlight)
     * [Powerline fonts](https://github.com/powerline/fonts)
     * [vim-gtk](https://stackoverflow.com/questions/11489428/how-can-i-make-vim-paste-from-and-copy-to-the-systems-clipboard)
-    * [aider](https://github.com/Aider-AI/aider)
+    * [gemini-cli](https://formulae.brew.sh/formula/gemini-cli)
     * [GCM](https://github.com/git-ecosystem/git-credential-manager/blob/release/docs/install.md#debian-package)
 
 * Python
@@ -28,7 +28,6 @@ IDE like vim config inspired by SpaceVim.
 
 # Cheatsheet
 
-* `\ - a - i` - chat with Aider
 * `Shift - f` - global search, use `'` to match exactly
 * `\ - f` - file search
 * `\ - a - g` - grep clipboard with file type
