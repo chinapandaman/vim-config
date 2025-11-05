@@ -16,7 +16,7 @@ IDE like vim config inspired by SpaceVim.
     * [GCM](https://github.com/git-ecosystem/git-credential-manager/blob/release/docs/install.md#debian-package)
 
 * Python
-    * [coc-jedi](https://github.com/pappasam/coc-jedi)
+    * [coc-pyright](https://github.com/fannheyward/coc-pyright)
     * [pyright](https://github.com/microsoft/pyright)
     * [PuDB](https://pypi.org/project/pudb/)
 
