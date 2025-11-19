@@ -6,7 +6,8 @@ set background=dark
 set hlsearch
 set termguicolors
 set backspace=indent,eol,start
-colo gruvbox
+let g:sonokai_style = 'andromeda'
+colorscheme sonokai
 let g:airline_powerline_fonts = 1
 let g:auto_save = 1
 set directory^=$HOME/.vim/tmp//
