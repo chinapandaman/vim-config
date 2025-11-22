@@ -20,7 +20,9 @@ function! GitUnstagedAndUntrackedVdiff()
   endfor
 
   " Run :Gvdiff
+  set nospell
   Gvdiff
+  set nospell
 endfunction
 
 function! CloseLeftSplitNextBufferVdiff()
@@ -34,7 +36,9 @@ function! CloseLeftSplitNextBufferVdiff()
   bnext
 
   " Run :Gvdiff
+  set nospell
   Gvdiff
+  set nospell
 endfunction
 
 " Map function to <Leader><Tab>
