@@ -14,6 +14,7 @@ IDE like vim config inspired by SpaceVim.
     * [vim-gtk](https://stackoverflow.com/questions/11489428/how-can-i-make-vim-paste-from-and-copy-to-the-systems-clipboard)
     * [gemini-cli](https://formulae.brew.sh/formula/gemini-cli)
     * [GCM](https://github.com/git-ecosystem/git-credential-manager/blob/release/docs/install.md#debian-package)
+    * [lazygit](https://formulae.brew.sh/formula/lazygit)
 
 * Python
     * [coc-pyright](https://github.com/fannheyward/coc-pyright)
@@ -37,10 +38,6 @@ IDE like vim config inspired by SpaceVim.
 * `g - x` - open link
 * `\ - q` - close current buffer
 * `\ - m` - toggle nerdtree and tagbar
-* `\ - g - d` - git diff view
-* `\ - tab` - next file in git diff view
-* `\ - g - s` - git status
-* `\ - g - b` - git branch
 * `\ - g - f` - go to current file on GitHub
 * `\ - c - p` - copy to clipboard
 * `g - d` - go to definition
