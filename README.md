@@ -5,15 +5,15 @@ IDE like vim config inspired by SpaceVim.
 # External Dependencies
 
 * General
-    * [The Silver Searcher](https://github.com/ggreer/the_silver_searcher)
-    * [bat](https://github.com/sharkdp/bat)
-    * [Universal Ctags](https://ctags.io/)
+    * [The Silver Searcher](https://formulae.brew.sh/formula/the_silver_searcher)
+    * [bat](https://formulae.brew.sh/formula/bat)
+    * [Universal Ctags](https://formulae.brew.sh/formula/universal-ctags)
     * Node.js >= 14.14
     * [coc-highlight](https://github.com/neoclide/coc-highlight)
     * [Powerline fonts](https://github.com/powerline/fonts)
     * [vim-gtk](https://stackoverflow.com/questions/11489428/how-can-i-make-vim-paste-from-and-copy-to-the-systems-clipboard)
     * [gemini-cli](https://formulae.brew.sh/formula/gemini-cli)
-    * [GCM](https://github.com/git-ecosystem/git-credential-manager/blob/release/docs/install.md#debian-package)
+    * [GCM](https://formulae.brew.sh/cask/git-credential-manager)
     * [lazygit](https://formulae.brew.sh/formula/lazygit)
 
 * Python
@@ -39,6 +39,7 @@ IDE like vim config inspired by SpaceVim.
 * `\ - q` - close current buffer
 * `\ - m` - toggle nerdtree and tagbar
 * `\ - g - f` - go to current file on GitHub
+* `\ - g - i - t` - open git client
 * `\ - c - p` - copy to clipboard
 * `g - d` - go to definition
 * `g - r` - go to references
