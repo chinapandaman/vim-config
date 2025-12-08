@@ -49,5 +49,4 @@ IDE like vim config inspired by SpaceVim.
 * `\ - r - a` - replace all searching keyword with
 * `z - a` - toggle YAML fold
 * `\ - d` - diff yank and clipboard
-* `:Gvdiffsplit!` - resolve conflicts
 * `:MarkdownPreview` - preview markdown
