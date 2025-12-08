@@ -6,13 +6,11 @@ set background=dark
 set hlsearch
 set termguicolors
 set backspace=indent,eol,start
-let g:sonokai_style = 'andromeda'
-colorscheme sonokai
+colorscheme onedark
 let g:airline_powerline_fonts = 1
 let g:auto_save = 1
 set directory^=$HOME/.vim/tmp//
 autocmd FileType markdown setlocal spell
-autocmd VimEnter * highlight SpellBad ctermfg=black ctermbg=green
 
 " indent guides
 let g:indent_guides_enable_on_vim_startup = 1

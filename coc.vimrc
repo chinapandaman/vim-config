@@ -33,7 +33,7 @@ nmap gr <Plug>(coc-references)
 
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
-autocmd VimEnter * highlight CocHighlightText cterm=underline ctermfg=208 ctermbg=NONE
+autocmd VimEnter * highlight CocHighlightText ctermfg=yellow ctermbg=NONE
 
 " Errors highlighting
 highlight CocErrorHighlight cterm=underline
