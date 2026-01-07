@@ -6,7 +6,7 @@ set background=dark
 set hlsearch
 set termguicolors
 set backspace=indent,eol,start
-colorscheme onedark
+colorscheme afterglow
 let g:airline_powerline_fonts = 1
 let g:auto_save = 1
 set directory^=$HOME/.vim/tmp//

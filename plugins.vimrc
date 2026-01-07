@@ -11,7 +11,7 @@ call plug#begin()
     Plug 'scrooloose/nerdtree'
     Plug 'majutsushi/tagbar'
     Plug 'moll/vim-bbye'
-    Plug 'joshdick/onedark.vim'
+    Plug 'danilo-augusto/vim-afterglow'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'dense-analysis/ale'
     Plug '907th/vim-auto-save'
