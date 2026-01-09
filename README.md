@@ -27,6 +27,9 @@ IDE like vim config inspired by SpaceVim.
 * TypeScript
     * [coc-tsserver](https://github.com/neoclide/coc-tsserver)
 
+* YAML
+    * [coc-yaml](https://github.com/neoclide/coc-yaml)
+
 # Cheatsheet
 
 * `Shift - f` - global search, use `'` to match exactly
@@ -38,6 +41,7 @@ IDE like vim config inspired by SpaceVim.
 * `g - x` - open link
 * `\ - q` - close current buffer
 * `\ - m` - toggle nerdtree and tagbar
+* `\ - o` - open CocOutline
 * `\ - g - f` - go to current file on GitHub
 * `\ - g - i - t` - open git client
 * `\ - c - p` - copy to clipboard

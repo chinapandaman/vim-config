@@ -11,6 +11,7 @@ let g:airline_powerline_fonts = 1
 let g:auto_save = 1
 set directory^=$HOME/.vim/tmp//
 autocmd FileType markdown setlocal spell
+autocmd VimEnter * highlight SpellBad ctermfg=black ctermbg=magenta
 
 " indent guides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -42,6 +43,7 @@ nnoremap <Leader>q :Bdelete<CR>
 
 " nerdtree and tagbar
 nnoremap <Leader>m :TagbarToggle<CR> :NERDTreeToggle<CR>
+nnoremap <Leader>o :CocOutline<CR>
 let NERDTreeShowHidden=1
 let g:tagbar_sort=0
 
@@ -51,30 +53,6 @@ let g:ale_linters={
 \}
 highlight ALEError cterm=underline
 highlight ALEWarning cterm=underline
-
-" YAML related
-function! YAMLTree()
-    if (&filetype != 'yaml')
-        return
-    endif
-    let l:list = []
-    let l:cur = getcurpos()[1]
-    " Retrieve the current line indentation
-    let l:indent = indent(l:cur) + 1
-    " Loop from the cursor position to the top of the file
-    for l:n in reverse(range(1, l:cur))
-        let l:i = indent(l:n)
-        let l:line = getline(l:n)
-        let l:key = substitute(l:line, '^\s*-\?\s*\(["'']\?\([a-zA-Z0-9_.-]\+\)["'']\?\)\s*:\s*.*', "\\1", '')
-        " If the indentation decreased and the pattern matched
-        if (l:i < l:indent && l:key !=# l:line)
-            let l:list = add(l:list, l:key)
-            let l:indent = l:i
-        endif
-    endfor
-    let l:list = reverse(l:list)
-    echo join(l:list, ' -> ')
-endfunction
 
 function! DiffYankAndClipboard()
     " Get the syntax highlighting of the current file
@@ -139,7 +117,6 @@ function! OpenGithubFile()
   endif
 endfunction
 
-autocmd CursorMoved * call YAMLTree()
 set foldlevelstart=20
 
 " hotkeys
