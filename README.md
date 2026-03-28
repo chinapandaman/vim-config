@@ -15,6 +15,7 @@ IDE like vim config inspired by SpaceVim.
     * [gemini-cli](https://formulae.brew.sh/formula/gemini-cli)
     * [GCM](https://formulae.brew.sh/cask/git-credential-manager)
     * [lazygit](https://formulae.brew.sh/formula/lazygit)
+    * [git-delta](https://dandavison.github.io/delta/get-started.html)
 
 * Python
     * [coc-pyright](https://github.com/fannheyward/coc-pyright)
