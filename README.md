@@ -12,7 +12,7 @@ IDE like vim config inspired by SpaceVim.
     * [coc-highlight](https://github.com/neoclide/coc-highlight)
     * [Powerline fonts](https://github.com/powerline/fonts)
     * [vim-gtk](https://stackoverflow.com/questions/11489428/how-can-i-make-vim-paste-from-and-copy-to-the-systems-clipboard)
-    * [gemini-cli](https://formulae.brew.sh/formula/gemini-cli)
+    * [opencode](https://formulae.brew.sh/formula/opencode)
     * [GCM](https://formulae.brew.sh/cask/git-credential-manager)
     * [lazygit](https://formulae.brew.sh/formula/lazygit)
     * [git-delta](https://dandavison.github.io/delta/get-started.html)
