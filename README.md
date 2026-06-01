@@ -35,7 +35,7 @@ IDE like vim config inspired by SpaceVim.
 
 * `Shift - f` - global search, use `'` to match exactly
 * `\ - f` - file search
-* `\ - a - g` - grep clipboard with file type
+* `\ - a - g` - toggle grep clipboard with file type and result preview
 * `\ - s` - split right
 * use arrow keys to navigate between splits
 * `z - z` - center around current line
@@ -46,6 +46,7 @@ IDE like vim config inspired by SpaceVim.
 * `\ - g - f` - go to current file on GitHub
 * `\ - g - i - t` - open git client
 * `\ - c - p` - copy to clipboard
+* `\ - p` - copy current buffer's relative path to clipboard
 * `g - d` - go to definition
 * `g - r` - go to references
 * `\ - r - n` - refactor rename

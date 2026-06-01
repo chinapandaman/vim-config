@@ -10,8 +10,10 @@ colorscheme dracula
 let g:airline_powerline_fonts = 1
 let g:auto_save = 1
 set directory^=$HOME/.vim/tmp//
-autocmd FileType markdown setlocal spell
+autocmd FileType markdown,gitcommit setlocal spell
 autocmd VimEnter * highlight SpellBad ctermfg=black ctermbg=magenta
+set autoread
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
 
 " indent guides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -121,6 +123,7 @@ set foldlevelstart=20
 
 " hotkeys
 vnoremap <Leader>cp "+y
+nnoremap <Leader>p :let @+=expand('%:.')<CR>
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 nnoremap <Leader>ra :%s//
 nnoremap <Leader>d :call DiffYankAndClipboard()<CR>

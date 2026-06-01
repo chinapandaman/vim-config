@@ -1,8 +1,8 @@
 function! GrepSearchBuffer()
-  " Check if a buffer named 'grep' already exists, close it if found
-  let l:grep_bufnr = bufexists('grep') ? bufnr('grep') : -1
-  if l:grep_bufnr != -1
-    execute 'bd! ' . l:grep_bufnr
+  " Toggle off the grep workflow if either buffer already exists.
+  if bufexists('grep') || bufexists('grep-preview')
+    call CloseGrepBuffers()
+    return
   endif
 
   " Open a vertical split with a new temporary buffer
@@ -30,6 +30,21 @@ function! GrepSearchBuffer()
 
   " Map "o" to open the file under the cursor in the existing left split
   nnoremap <buffer> o :call OpenFileFromGrepResult()<CR>
+
+  " Preview grep results as the cursor moves over them
+  augroup GrepSearchPreview
+    autocmd! * <buffer>
+    autocmd CursorMoved <buffer> call PreviewGrepResult()
+  augroup END
+endfunction
+
+function! CloseGrepBuffers()
+  for l:buffer_name in ['grep-preview', 'grep']
+    let l:bufnr = bufnr(l:buffer_name)
+    if l:bufnr != -1
+      execute 'bwipeout! ' . l:bufnr
+    endif
+  endfor
 endfunction
 
 function! ExecuteGrepCommand()
@@ -46,32 +61,104 @@ function! ExecuteGrepCommand()
   call cursor(1, 28)
 endfunction
 
-function! OpenFileFromGrepResult()
-  " Get the line under the cursor containing the file name and line number
-  let l:grep_result = getline('.')
-
+function! GrepResultLocation()
   " Ensure we are not on the grep command or empty line (skip first two lines)
   if line('.') <= 2
+    return []
+  endif
+
+  " Extract the file path and line number from git grep output.
+  let l:grep_result = getline('.')
+  let l:matches = matchlist(l:grep_result, '^\(.\{-}\):\(\d\+\):')
+  if empty(l:matches)
+    return []
+  endif
+
+  return [l:matches[1], str2nr(l:matches[2])]
+endfunction
+
+function! OpenFileFromGrepResult()
+  let l:location = GrepResultLocation()
+  if empty(l:location)
     echo "Please select a valid grep result."
     return
   endif
-
-  " Extract the file path from the grep result (match before the first colon)
-  let l:file_path = matchstr(l:grep_result, '^\([^:]*\)')
-
-  " Extract the line number from between the first and second colon
-  let l:line_number = matchstr(l:grep_result, ':\zs\d\+')
 
   " Switch to the left split
   wincmd h
 
   " Open the file in the left split
-  execute 'e ' . l:file_path
+  execute 'e ' . fnameescape(l:location[0])
 
   " Jump to the extracted line number
-  execute l:line_number
+  execute l:location[1]
 
   " Center the line on the screen
+  normal! zz
+endfunction
+
+function! PreviewGrepResult()
+  let l:location = GrepResultLocation()
+  if empty(l:location)
+    return
+  endif
+
+  let l:grep_winid = win_getid()
+  let l:preview_bufnr = bufnr('grep-preview')
+  let l:preview_winid = l:preview_bufnr == -1 ? -1 : bufwinid(l:preview_bufnr)
+
+  if l:preview_winid == -1
+    belowright split
+    if l:preview_bufnr == -1
+      enew
+      file grep-preview
+      setlocal buftype=nofile bufhidden=hide noswapfile nobuflisted
+    else
+      execute 'buffer ' . l:preview_bufnr
+    endif
+  else
+    call win_gotoid(l:preview_winid)
+  endif
+
+  call ShowGrepPreview(l:location[0], l:location[1])
+  call win_gotoid(l:grep_winid)
+endfunction
+
+function! ShowGrepPreview(file_path, line_number)
+  let l:preview_key = a:file_path . ':' . a:line_number
+  if exists('b:grep_preview_key') && b:grep_preview_key ==# l:preview_key
+    call JumpToGrepPreviewLine(a:line_number)
+    return
+  endif
+
+  if exists('b:grep_preview_file') && b:grep_preview_file ==# a:file_path
+    let b:grep_preview_key = l:preview_key
+    call JumpToGrepPreviewLine(a:line_number)
+    return
+  endif
+
+  try
+    let l:lines = readfile(a:file_path)
+  catch
+    let l:lines = ['Unable to read ' . a:file_path, v:exception]
+  endtry
+
+  if empty(l:lines)
+    let l:lines = ['']
+  endif
+
+  setlocal modifiable noreadonly
+  silent! %delete _
+  call setline(1, l:lines)
+  let b:grep_preview_file = a:file_path
+  let b:grep_preview_key = l:preview_key
+  setlocal nomodified nomodifiable readonly
+
+  call JumpToGrepPreviewLine(a:line_number)
+endfunction
+
+function! JumpToGrepPreviewLine(line_number)
+  call cursor(min([max([a:line_number, 1]), line('$')]), 1)
   normal! zz
 endfunction
 
