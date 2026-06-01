@@ -1,5 +1,6 @@
 " plugins
 call plug#begin()
+    Plug 'dracula/vim'
     Plug 'jiangmiao/auto-pairs'
     Plug 'vim-airline/vim-airline'
     Plug 'nathanaelkane/vim-indent-guides'
@@ -11,7 +12,6 @@ call plug#begin()
     Plug 'scrooloose/nerdtree'
     Plug 'majutsushi/tagbar'
     Plug 'moll/vim-bbye'
-    Plug 'whatyouhide/vim-gotham'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'dense-analysis/ale'
     Plug '907th/vim-auto-save'
