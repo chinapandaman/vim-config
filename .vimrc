@@ -43,11 +43,15 @@ nnoremap <Right> :wincmd l<CR>
 " buffer bye
 nnoremap <Leader>q :Bdelete<CR>
 
-" nerdtree and tagbar
-nnoremap <Leader>m :TagbarToggle<CR> :NERDTreeToggle<CR>
+" nerdtree and outline
+nnoremap <Leader>m :NERDTreeToggle<CR>
 nnoremap <Leader>o :CocOutline<CR>
 let NERDTreeShowHidden=1
-let g:tagbar_sort=0
+augroup NERDTreeMappings
+    autocmd!
+    autocmd FileType nerdtree nnoremap <buffer> <Tab> <Nop>
+    autocmd FileType nerdtree nnoremap <buffer> <S-Tab> <Nop>
+augroup END
 
 " ale
 let g:ale_linters={

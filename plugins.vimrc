@@ -10,7 +10,6 @@ call plug#begin()
     Plug 'junegunn/fzf.vim'
     Plug 'tpope/vim-sleuth'
     Plug 'scrooloose/nerdtree'
-    Plug 'majutsushi/tagbar'
     Plug 'moll/vim-bbye'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'dense-analysis/ale'

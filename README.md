@@ -7,7 +7,6 @@ IDE like vim config inspired by SpaceVim.
 * General
     * [The Silver Searcher](https://formulae.brew.sh/formula/the_silver_searcher)
     * [bat](https://formulae.brew.sh/formula/bat)
-    * [Universal Ctags](https://formulae.brew.sh/formula/universal-ctags)
     * Node.js >= 14.14
     * [coc-highlight](https://github.com/neoclide/coc-highlight)
     * [Powerline fonts](https://github.com/powerline/fonts)
@@ -41,7 +40,7 @@ IDE like vim config inspired by SpaceVim.
 * `z - z` - center around current line
 * `g - x` - open link
 * `\ - q` - close current buffer
-* `\ - m` - toggle nerdtree and tagbar
+* `\ - m` - toggle nerdtree
 * `\ - o` - open CocOutline
 * `\ - g - f` - go to current file on GitHub
 * `\ - g - i - t` - open git client
