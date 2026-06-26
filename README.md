@@ -44,7 +44,6 @@ IDE like vim config inspired by SpaceVim.
 * `\ - m` - toggle nerdtree
 * `\ - o` - open CocOutline
 * `\ - g - f` - go to current file on GitHub
-* `\ - g - i - t` - open git client
 * `\ - c - p` - copy to clipboard
 * `\ - p` - copy current buffer's relative path to clipboard
 * `g - d` - go to definition
