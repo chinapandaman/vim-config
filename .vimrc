@@ -51,6 +51,8 @@ augroup NERDTreeMappings
     autocmd!
     autocmd FileType nerdtree nnoremap <buffer> <Tab> <Nop>
     autocmd FileType nerdtree nnoremap <buffer> <S-Tab> <Nop>
+    autocmd FileType nerdtree nnoremap <buffer> + :vertical resize +5<CR>
+    autocmd FileType nerdtree nnoremap <buffer> - :vertical resize -5<CR>
 augroup END
 
 " ale
