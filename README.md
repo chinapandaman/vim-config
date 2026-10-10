@@ -6,6 +6,7 @@ IDE like vim config inspired by SpaceVim.
 
 * General
     * [The Silver Searcher](https://formulae.brew.sh/formula/the_silver_searcher)
+    * [ripgrep](https://github.com/BurntSushi/ripgrep#installation) (`rg`, for the search buffer)
     * [bat](https://formulae.brew.sh/formula/bat)
     * Node.js >= 14.14
     * [coc-highlight](https://github.com/neoclide/coc-highlight)
@@ -35,7 +36,7 @@ IDE like vim config inspired by SpaceVim.
 
 * `Shift - f` - global search, use `'` to match exactly
 * `\ - f` - file search
-* `\ - a - g` - toggle grep clipboard with file type and result preview
+* `\ - a - g` - toggle workspace search, seeded from the clipboard, with result preview
 * `\ - s` - split right
 * use arrow keys to navigate between splits
 * `z - z` - center around current line
