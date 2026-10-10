@@ -23,6 +23,7 @@ function! SearchBuffer()
   let b:search_target_winid = l:target_winid
   let b:search_locations = []
   let b:search_result_lines = []
+  let b:search_match_positions = {}
 
   " Search is line-oriented. Seed it with the first line of the clipboard.
   let l:clipboard = split(getreg('+'), "\n", 1)
@@ -126,6 +127,7 @@ function! ExecuteSearch()
   let l:position = getpos('.')
   let b:search_locations = []
   let b:search_result_lines = []
+  let b:search_match_positions = {}
   if line('$') > s:search_header_lines
     execute (s:search_header_lines + 1) . ',$delete _'
   endif
@@ -195,9 +197,21 @@ function! ExecuteSearch()
       endif
       let l:path = substitute(s:SearchJsonText(l:data.path), '^\./', '', '')
       let l:text = substitute(s:SearchJsonText(l:data.lines), '\r\?\n$', '', '')
+      let l:file_path = b:search_root . '/' . l:path
       " Keep locations separate from display text, including paths with colons.
-      call add(b:search_locations, [b:search_root . '/' . l:path, l:data.line_number])
+      call add(b:search_locations, [l:file_path, l:data.line_number])
       call add(b:search_result_lines, strtrans(l:path) . ':' . l:data.line_number . ':' . strtrans(l:text))
+      if !has_key(b:search_match_positions, l:file_path)
+        let b:search_match_positions[l:file_path] = []
+      endif
+      " rg and matchaddpos() both use byte offsets, including for UTF-8 text.
+      " Keep the engine's exact spans instead of translating its regex to Vim.
+      for l:match in l:data.submatches
+        if l:match.end > l:match.start
+          call add(b:search_match_positions[l:file_path],
+                \ [l:data.line_number, l:match.start + 1, l:match.end - l:match.start])
+        endif
+      endfor
     endfor
     call append(s:search_header_lines, b:search_result_lines)
     if l:exit_code > 1
@@ -249,6 +263,7 @@ function! PreviewSearchResult()
   endif
 
   let l:search_winid = win_getid()
+  let l:positions = get(b:search_match_positions, l:location[0], [])
   let l:preview_bufnr = bufnr('search-preview')
   let l:preview_winid = l:preview_bufnr == -1 ? -1 : bufwinid(l:preview_bufnr)
   try
@@ -265,9 +280,40 @@ function! PreviewSearchResult()
       call win_gotoid(l:preview_winid)
     endif
     call ShowSearchPreview(l:location[0], l:location[1])
+    call s:HighlightSearchPreview(l:positions)
   finally
     call win_gotoid(l:search_winid)
   endtry
+endfunction
+
+function! s:ClearSearchPreviewHighlights(buffer)
+  " Matches belong to windows, so remove only our overlays before reuse.
+  for l:winid in win_findbuf(a:buffer)
+    for l:id in getwinvar(l:winid, 'search_preview_match_ids', [])
+      silent! call matchdelete(l:id, l:winid)
+    endfor
+    call setwinvar(l:winid, 'search_preview_match_ids', [])
+    call setwinvar(l:winid, 'search_preview_match_buffer', -1)
+  endfor
+endfunction
+
+function! s:HighlightSearchPreview(positions)
+  if get(w:, 'search_preview_match_buffer', -1) == bufnr('%')
+    return
+  endif
+  call s:ClearSearchPreviewHighlights(bufnr('%'))
+  " Batches of eight also work with older Vim versions.
+  let l:start = 0
+  while l:start < len(a:positions)
+    call add(w:search_preview_match_ids,
+          \ matchaddpos('Search', a:positions[l:start : l:start + 7], 10))
+    let l:start += 8
+  endwhile
+  let w:search_preview_match_buffer = bufnr('%')
+  augroup SearchPreviewHighlights
+    autocmd! * <buffer>
+    autocmd BufWinLeave <buffer> call <SID>ClearSearchPreviewHighlights(str2nr(expand('<abuf>')))
+  augroup END
 endfunction
 
 function! ShowSearchPreview(file_path, line_number)

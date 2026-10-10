@@ -36,7 +36,7 @@ IDE like vim config inspired by SpaceVim.
 
 * `Shift - f` - global search, use `'` to match exactly
 * `\ - f` - file search
-* `\ - a - g` - toggle workspace search, seeded from the clipboard, with result preview
+* `\ - a - g` - toggle workspace search, seeded from the clipboard
 * `\ - s` - split right
 * use arrow keys to navigate between splits
 * `z - z` - center around current line
