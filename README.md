@@ -6,7 +6,7 @@ IDE like vim config inspired by SpaceVim.
 
 * General
     * [The Silver Searcher](https://formulae.brew.sh/formula/the_silver_searcher)
-    * [ripgrep](https://github.com/BurntSushi/ripgrep#installation) (`rg`, for the search buffer)
+    * [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
     * [bat](https://formulae.brew.sh/formula/bat)
     * Node.js >= 14.14
     * [coc-highlight](https://github.com/neoclide/coc-highlight)
